@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<title>ConvolverNode setBuffer null test</title>
+<script src="../include.js"></script>
+<script>
+test(() => {
+    const context = new AudioContext();
+    const conv = context.createConvolver();
+    
+    println("=== Testing setting buffer to null ===");
+    
+    // First set a valid buffer
+    const buffer = context.createBuffer(1, 128, context.sampleRate);
+    conv.buffer = buffer;
+    println("Set buffer, numberOfChannels: " + conv.buffer.numberOfChannels);
+    
+    // Now set to null
+    try {
+        conv.buffer = null;
+        println("PASS: Setting buffer to null did not throw");
+        println("Buffer is null: " + (conv.buffer === null));
+    } catch (e) {
+        println("FAIL: Setting buffer to null threw " + e.name);
+    }
+});
+</script>

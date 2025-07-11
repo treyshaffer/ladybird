@@ -1065,6 +1065,7 @@ class AudioParam;
 class AudioScheduledSourceNode;
 class BaseAudioContext;
 class BiquadFilterNode;
+class ConvolverNode;
 class DynamicsCompressorNode;
 class GainNode;
 class OfflineAudioContext;

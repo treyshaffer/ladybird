@@ -1,0 +1,12 @@
+ConvolverNode constructor exists: true
+ConvolverNode created successfully
+numberOfInputs: 1
+numberOfOutputs: 1
+channelCount: 2
+channelCountMode: clamped-max
+channelInterpretation: speakers
+normalize: true
+buffer: null
+ConvolverNode with disableNormalization created
+normalize (with disableNormalization=true): false
+context.createConvolver() successful

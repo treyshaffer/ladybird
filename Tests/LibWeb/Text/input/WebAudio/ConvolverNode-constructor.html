@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<script src="../include.js"></script>
+<script>
+test(() => {
+    const context = new AudioContext();
+    
+    // Test ConvolverNode exists
+    println("ConvolverNode constructor exists: " + (typeof ConvolverNode !== 'undefined'));
+    
+    // Test constructor
+    let node;
+    try {
+        node = new ConvolverNode(context);
+        println("ConvolverNode created successfully");
+    } catch (e) {
+        println("Failed to create ConvolverNode: " + e.message);
+        return;
+    }
+    
+    // Test properties
+    println("numberOfInputs: " + node.numberOfInputs);
+    println("numberOfOutputs: " + node.numberOfOutputs);
+    println("channelCount: " + node.channelCount);
+    println("channelCountMode: " + node.channelCountMode);
+    println("channelInterpretation: " + node.channelInterpretation);
+    println("normalize: " + node.normalize);
+    println("buffer: " + node.buffer);
+    
+    // Test with options
+    try {
+        const node2 = new ConvolverNode(context, { disableNormalization: true });
+        println("ConvolverNode with disableNormalization created");
+        println("normalize (with disableNormalization=true): " + node2.normalize);
+    } catch (e) {
+        println("Failed with options: " + e.message);
+    }
+    
+    // Test factory method
+    try {
+        const node3 = context.createConvolver();
+        println("context.createConvolver() successful");
+    } catch (e) {
+        println("Factory method failed: " + e.message);
+    }
+});
+</script>

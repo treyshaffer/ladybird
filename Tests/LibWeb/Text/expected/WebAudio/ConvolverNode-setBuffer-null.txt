@@ -1,0 +1,4 @@
+=== Testing setting buffer to null ===
+Set buffer, numberOfChannels: 1
+PASS: Setting buffer to null did not throw
+Buffer is null: true

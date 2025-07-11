@@ -1,0 +1,31 @@
+=== Testing invalid constructor usage ===
+PASS: new ConvolverNode() threw TypeError
+PASS: new ConvolverNode(1) threw TypeError
+PASS: new ConvolverNode(context, 42) threw TypeError
+
+=== Testing default constructor and attributes ===
+numberOfInputs: 1
+numberOfOutputs: 1
+channelCount: 2
+channelCountMode: clamped-max
+channelInterpretation: speakers
+normalize: true
+buffer: null
+
+=== Testing AudioNodeOptions ===
+channelCount = 1: 1
+channelCount = 2: 2
+PASS: channelCount = 0 threw NotSupportedError
+PASS: channelCount = 3 threw NotSupportedError
+channelCountMode = 'clamped-max': clamped-max
+channelCountMode = 'explicit': explicit
+PASS: channelCountMode = 'max' threw NotSupportedError
+
+=== Testing ConvolverOptions ===
+buffer = null: null
+With buffer, normalize: true
+Buffer channels: 1
+Without buffer, disableNormalization=true, normalize: false
+
+=== Testing invalid sample rate buffer ===
+PASS: Invalid sample rate buffer threw NotSupportedError

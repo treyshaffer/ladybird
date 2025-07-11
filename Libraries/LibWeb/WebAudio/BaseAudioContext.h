@@ -24,6 +24,7 @@
 namespace Web::WebAudio {
 
 class AudioDestinationNode;
+class ConvolverNode;
 
 // https://webaudio.github.io/web-audio-api/#BaseAudioContext
 class BaseAudioContext : public DOM::EventTarget {
@@ -68,6 +69,7 @@ public:
     WebIDL::ExceptionOr<GC::Ref<AudioBufferSourceNode>> create_buffer_source();
     WebIDL::ExceptionOr<GC::Ref<ChannelMergerNode>> create_channel_merger(WebIDL::UnsignedLong number_of_inputs);
     WebIDL::ExceptionOr<GC::Ref<ConstantSourceNode>> create_constant_source();
+    WebIDL::ExceptionOr<GC::Ref<ConvolverNode>> create_convolver();
     WebIDL::ExceptionOr<GC::Ref<ChannelSplitterNode>> create_channel_splitter(WebIDL::UnsignedLong number_of_outputs);
     WebIDL::ExceptionOr<GC::Ref<DelayNode>> create_delay(double max_delay_time = 1);
     WebIDL::ExceptionOr<GC::Ref<OscillatorNode>> create_oscillator();

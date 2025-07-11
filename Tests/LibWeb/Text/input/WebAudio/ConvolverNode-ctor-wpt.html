@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<title>ConvolverNode Constructor WPT Tests</title>
+<script src="../include.js"></script>
+<script>
+test(() => {
+    const context = new AudioContext();
+
+    println("=== Testing invalid constructor usage ===");
+    
+    // Test missing context
+    try {
+        new ConvolverNode();
+        println("FAIL: new ConvolverNode() should throw TypeError");
+    } catch (e) {
+        println("PASS: new ConvolverNode() threw " + e.name);
+    }
+
+    // Test invalid context type
+    try {
+        new ConvolverNode(1);
+        println("FAIL: new ConvolverNode(1) should throw TypeError");
+    } catch (e) {
+        println("PASS: new ConvolverNode(1) threw " + e.name);
+    }
+
+    // Test invalid options type
+    try {
+        new ConvolverNode(context, 42);
+        println("FAIL: new ConvolverNode(context, 42) should throw TypeError");
+    } catch (e) {
+        println("PASS: new ConvolverNode(context, 42) threw " + e.name);
+    }
+
+    println("\n=== Testing default constructor and attributes ===");
+    
+    const node = new ConvolverNode(context);
+    println("numberOfInputs: " + node.numberOfInputs);
+    println("numberOfOutputs: " + node.numberOfOutputs);
+    println("channelCount: " + node.channelCount);
+    println("channelCountMode: " + node.channelCountMode);
+    println("channelInterpretation: " + node.channelInterpretation);
+    println("normalize: " + node.normalize);
+    println("buffer: " + node.buffer);
+
+    println("\n=== Testing AudioNodeOptions ===");
+    
+    // Test channelCount
+    const node1 = new ConvolverNode(context, { channelCount: 1 });
+    println("channelCount = 1: " + node1.channelCount);
+    
+    const node2 = new ConvolverNode(context, { channelCount: 2 });
+    println("channelCount = 2: " + node2.channelCount);
+    
+    try {
+        new ConvolverNode(context, { channelCount: 0 });
+        println("FAIL: channelCount = 0 should throw NotSupportedError");
+    } catch (e) {
+        println("PASS: channelCount = 0 threw " + e.name);
+    }
+    
+    try {
+        new ConvolverNode(context, { channelCount: 3 });
+        println("FAIL: channelCount = 3 should throw NotSupportedError");
+    } catch (e) {
+        println("PASS: channelCount = 3 threw " + e.name);
+    }
+
+    // Test channelCountMode
+    const node3 = new ConvolverNode(context, { channelCountMode: 'clamped-max' });
+    println("channelCountMode = 'clamped-max': " + node3.channelCountMode);
+    
+    const node4 = new ConvolverNode(context, { channelCountMode: 'explicit' });
+    println("channelCountMode = 'explicit': " + node4.channelCountMode);
+    
+    try {
+        new ConvolverNode(context, { channelCountMode: 'max' });
+        println("FAIL: channelCountMode = 'max' should throw NotSupportedError");
+    } catch (e) {
+        println("PASS: channelCountMode = 'max' threw " + e.name);
+    }
+
+    println("\n=== Testing ConvolverOptions ===");
+    
+    // Test nullable buffer
+    const node5 = new ConvolverNode(context, { buffer: null });
+    println("buffer = null: " + node5.buffer);
+    
+    // Test buffer and disableNormalization
+    const buf = context.createBuffer(1, 128, context.sampleRate);
+    const node6 = new ConvolverNode(context, { buffer: buf, disableNormalization: false });
+    println("With buffer, normalize: " + node6.normalize);
+    println("Buffer channels: " + (node6.buffer ? node6.buffer.numberOfChannels : null));
+    
+    const node7 = new ConvolverNode(context, { buffer: null, disableNormalization: true });
+    println("Without buffer, disableNormalization=true, normalize: " + node7.normalize);
+    
+    // Test invalid sample rate buffer
+    println("\n=== Testing invalid sample rate buffer ===");
+    try {
+        const invalidBuffer = context.createBuffer(1, 1, context.sampleRate / 2);
+        new ConvolverNode(context, { buffer: invalidBuffer });
+        println("FAIL: Buffer with invalid sample rate should throw NotSupportedError");
+    } catch (e) {
+        println("PASS: Invalid sample rate buffer threw " + e.name);
+    }
+});
+</script>
