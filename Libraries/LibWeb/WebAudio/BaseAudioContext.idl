@@ -42,7 +42,7 @@ interface BaseAudioContext : EventTarget {
     DelayNode createDelay (optional double maxDelayTime = 1.0);
     DynamicsCompressorNode createDynamicsCompressor();
     GainNode createGain();
-    [FIXME] IIRFilterNode createIIRFilter (sequence<double> feedforward, sequence<double> feedback);
+    IIRFilterNode createIIRFilter (sequence<double> feedforward, sequence<double> feedback);
     OscillatorNode createOscillator();
     PannerNode createPanner();
     PeriodicWave createPeriodicWave (sequence<float> real, sequence<float> imag, optional PeriodicWaveConstraints constraints = {});

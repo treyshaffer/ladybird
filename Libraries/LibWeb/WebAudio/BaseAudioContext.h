@@ -25,6 +25,7 @@ namespace Web::WebAudio {
 
 class AudioDestinationNode;
 class ConvolverNode;
+class IIRFilterNode;
 class WaveShaperNode;
 
 // https://webaudio.github.io/web-audio-api/#BaseAudioContext
@@ -76,6 +77,7 @@ public:
     WebIDL::ExceptionOr<GC::Ref<OscillatorNode>> create_oscillator();
     WebIDL::ExceptionOr<GC::Ref<DynamicsCompressorNode>> create_dynamics_compressor();
     WebIDL::ExceptionOr<GC::Ref<GainNode>> create_gain();
+    WebIDL::ExceptionOr<GC::Ref<IIRFilterNode>> create_iir_filter(Vector<double> feedforward, Vector<double> feedback);
     WebIDL::ExceptionOr<GC::Ref<PannerNode>> create_panner();
     WebIDL::ExceptionOr<GC::Ref<PeriodicWave>> create_periodic_wave(Vector<float> const& real, Vector<float> const& imag, Optional<PeriodicWaveConstraints> const& constraints = {});
     WebIDL::ExceptionOr<GC::Ref<StereoPannerNode>> create_stereo_panner();

@@ -21,6 +21,7 @@
 #include <LibWeb/WebAudio/ConvolverNode.h>
 #include <LibWeb/WebAudio/DynamicsCompressorNode.h>
 #include <LibWeb/WebAudio/GainNode.h>
+#include <LibWeb/WebAudio/IIRFilterNode.h>
 #include <LibWeb/WebAudio/OscillatorNode.h>
 #include <LibWeb/WebAudio/PannerNode.h>
 #include <LibWeb/WebAudio/WaveShaperNode.h>
@@ -149,6 +150,13 @@ WebIDL::ExceptionOr<GC::Ref<GainNode>> BaseAudioContext::create_gain()
 {
     // Factory method for GainNode.
     return GainNode::create(realm(), *this);
+}
+
+// https://webaudio.github.io/web-audio-api/#dom-baseaudiocontext-createiirfilter
+WebIDL::ExceptionOr<GC::Ref<IIRFilterNode>> BaseAudioContext::create_iir_filter(Vector<double> feedforward, Vector<double> feedback)
+{
+    // Factory method for IIRFilterNode.
+    return IIRFilterNode::create(realm(), *this, move(feedforward), move(feedback));
 }
 
 // https://webaudio.github.io/web-audio-api/#dom-baseaudiocontext-createpanner
