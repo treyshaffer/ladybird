@@ -918,6 +918,7 @@ set(SOURCES
     WebAudio/PannerNode.cpp
     WebAudio/PeriodicWave.cpp
     WebAudio/StereoPannerNode.cpp
+    WebAudio/WaveShaperNode.cpp
     WebDriver/Actions.cpp
     WebDriver/Capabilities.cpp
     WebDriver/Client.cpp

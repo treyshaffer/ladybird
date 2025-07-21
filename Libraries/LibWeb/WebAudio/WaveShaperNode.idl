@@ -1,0 +1,19 @@
+// https://webaudio.github.io/web-audio-api/#WaveShaperNode
+
+enum OverSampleType {
+    "none",
+    "2x",
+    "4x"
+};
+
+dictionary WaveShaperOptions : AudioNodeOptions {
+    Float32Array curve;
+    OverSampleType oversample = "none";
+};
+
+[Exposed=Window]
+interface WaveShaperNode : AudioNode {
+    constructor(BaseAudioContext context, optional WaveShaperOptions options = {});
+    attribute Float32Array? curve;
+    attribute OverSampleType oversample;
+};

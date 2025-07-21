@@ -23,6 +23,7 @@
 #include <LibWeb/WebAudio/GainNode.h>
 #include <LibWeb/WebAudio/OscillatorNode.h>
 #include <LibWeb/WebAudio/PannerNode.h>
+#include <LibWeb/WebAudio/WaveShaperNode.h>
 #include <LibWeb/WebIDL/AbstractOperations.h>
 #include <LibWeb/WebIDL/Promise.h>
 
@@ -173,6 +174,12 @@ WebIDL::ExceptionOr<GC::Ref<StereoPannerNode>> BaseAudioContext::create_stereo_p
 {
     // Factory method for a StereoPannerNode.
     return StereoPannerNode::create(realm(), *this);
+}
+
+WebIDL::ExceptionOr<GC::Ref<WaveShaperNode>> BaseAudioContext::create_wave_shaper()
+{
+    // Factory method for a WaveShaperNode.
+    return WaveShaperNode::create(realm(), *this);
 }
 
 WebIDL::ExceptionOr<void> BaseAudioContext::verify_audio_options_inside_nominal_range(JS::Realm& realm, float sample_rate)

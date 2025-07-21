@@ -25,6 +25,7 @@ namespace Web::WebAudio {
 
 class AudioDestinationNode;
 class ConvolverNode;
+class WaveShaperNode;
 
 // https://webaudio.github.io/web-audio-api/#BaseAudioContext
 class BaseAudioContext : public DOM::EventTarget {
@@ -78,6 +79,7 @@ public:
     WebIDL::ExceptionOr<GC::Ref<PannerNode>> create_panner();
     WebIDL::ExceptionOr<GC::Ref<PeriodicWave>> create_periodic_wave(Vector<float> const& real, Vector<float> const& imag, Optional<PeriodicWaveConstraints> const& constraints = {});
     WebIDL::ExceptionOr<GC::Ref<StereoPannerNode>> create_stereo_panner();
+    WebIDL::ExceptionOr<GC::Ref<WaveShaperNode>> create_wave_shaper();
 
     GC::Ref<WebIDL::Promise> decode_audio_data(GC::Root<WebIDL::BufferSource>, GC::Ptr<WebIDL::CallbackType>, GC::Ptr<WebIDL::CallbackType>);
 
